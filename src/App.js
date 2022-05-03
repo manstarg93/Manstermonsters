@@ -43,7 +43,7 @@ const onSearchChange = (event) => {
     
   return(
     <div className="App">
-    <h1 className='app-title'>Manster Monster</h1>
+    <h1 className='app-title'>Manster Monsters</h1>
 
  <SearchBox 
  className='monsters-search-box' 
