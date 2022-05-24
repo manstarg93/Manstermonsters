@@ -13,11 +13,11 @@ import {
   getFirestore,
   doc,
   getDoc,
-  getDocs,
   setDoc,
   collection,
   writeBatch,
   query,
+  getDocs,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -28,7 +28,6 @@ const firebaseConfig = {
   messagingSenderId: "865366611974",
   appId: "1:865366611974:web:5760392e4ce6fd98f14b87"
 };
-
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -48,12 +47,13 @@ export const db = getFirestore();
 
 export const addCollectionAndDocuments = async (
   collectionKey,
-  objectsToAdd
+  objectsToAdd,
+  field
 ) => {
-  const batch = writeBatch(db);
   const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
 
-  objectsToAdd.forEach(async (object) => {
+  objectsToAdd.forEach((object) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
